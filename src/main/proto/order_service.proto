@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+package br.com.shifter;
+
+service OrderManagement{
+  rpc getOrder(google.protobuf.StringValue) returns (stream Order);
+  rpc submit(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+}
+
+message Order{
+  string id = 1;
+  string userId = 2;
+  string items = 3;
+  string price = 4;
+  enum PaymentMethod{
+    MONEY = 0;
+    CREDIT_CARD= 1;
+  }
+  PaymentMethod paymentMethod = 5;
+  string destination = 6;
+}

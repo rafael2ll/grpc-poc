@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "order_service.proto";
+package br.com.shifter;
+
+service PaymentService{
+  rpc charge(Charge) returns (ChargeResult);
+}
+
+message Charge{
+  double price = 1;
+  Order.PaymentMethod paymentMethod = 2;
+}
+
+message ChargeResult{
+  bool success = 1;
+  string error = 2;
+}
